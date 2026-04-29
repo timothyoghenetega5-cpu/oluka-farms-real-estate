@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Oluka Farms – Premium pig farm in Abakaliki, Ebonyi State. Buy healthy pigs, piglets, and quality breeding stock. Trusted local farm with 4.7/5 rating.">
+<meta name="keywords" content="Pig Farm Abakaliki, Pig Farm Ebonyi State, Buy Pigs Nigeria, Piglets for Sale Ebonyi, Trusted Pig Farm Abakaliki">
+<title>Oluka Farms – Premium Pig Farm | Abakaliki, Ebonyi State</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+  /* ─────────── CSS VARIABLES ─────────── */
+  :root {
+    --green:   #0E3B2E;
+    --green2:  #1A5C44;
+    --green3:  #2A7A5C;
+    --gold:    #D4AF37;
+    --gold2:   #F0D060;
+    --gold3:   #A88820;
+    --brown:   #8B6344;
+    --brown2:  #C4A882;
+    --cream:   #FAF7F2;
+    --white:   #FFFFFF;
+    --dark:    #0A0A0A;
+    --gray:    #6B7280;
+    --border:  rgba(212,175,55,0.18);
+  }
+
+  /* ─────────── RESET ─────────── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    cursor: none;
+  }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ─────────── CUSTOM CURSOR ─────────── */
+  .cursor {
+    position: fixed; width: 12px; height: 12px;
+    background: var(--gold); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transition: transform 0.15s ease, opacity 0.3s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed; width: 38px; height: 38px;
+    border: 1.5px solid var(--gold); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transition: transform 0.35s cubic-bezier(.17,.67,.44,1.2), width 0.3s, height 0.3s;
+  }
+
+  /* ─────────── LOADING SCREEN ─────────── */
+  #loader {
+    position: fixed; inset: 0;
+    background: var(--green);
+    z-index: 10000;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; }
+  .loader-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    animation: logoPulse 1.4s ease infinite alternate;
+  }
+  .loader-sub {
+    font-family: 'DM Sans', sans-serif;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+  .loader-bar {
+    width: 220px; height: 2px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px;
+    margin-top: 2.5rem;
+    overflow: hidden;
+  }
+  .loader-bar-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--gold3), var(--gold2));
+    border-radius: 2px;
+    animation: loadFill 2.2s cubic-bezier(.4,0,.2,1) forwards;
+  }
+  @keyframes logoPulse { from { opacity: 0.7; } to { opacity: 1; } }
+  @keyframes loadFill { to { width: 100%; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  /* ─────────── NAV ─────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 1.2rem 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.4s, padding 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(14,59,46,0.96);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 2px 30px rgba(0,0,0,0.25);
+    padding: 0.85rem 5%;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.03em;
+  }
+  .nav-logo span { color: var(--white); font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.82);
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--green) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    transition: background 0.25s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold2) !important; transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span {
+    width: 24px; height: 2px;
+    background: var(--gold); border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .mobile-menu {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--green);
+    z-index: 999; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2rem;
+    opacity: 0; pointer-events: none; transition: opacity 0.4s;
+  }
+  .mobile-menu.open { opacity: 1; pointer-events: all; }
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; color: var(--white);
+    transition: color 0.25s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-close {
+    position: absolute; top: 1.5rem; right: 5%;
+    font-size: 2rem; color: var(--gold); cursor: pointer;
+  }
+
+  /* ─────────── HERO ─────────── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-canvas {
+    position: absolute; inset: 0; z-index: 0;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(14,59,46,0.85) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(14,59,46,0.6) 0%, transparent 50%),
+      linear-gradient(135deg, rgba(14,59,46,0.92) 0%, rgba(26,92,68,0.75) 50%, rgba(14,59,46,0.88) 100%);
+  }
+  /* Animated farm scene via CSS shapes */
+  .farm-scene {
+    position: absolute; inset: 0; z-index: 1; overflow: hidden;
+  }
+  .sun {
+    position: absolute; top: 12%; right: 15%;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240,208,96,0.95) 0%, rgba(212,175,55,0.6) 40%, transparent 70%);
+    animation: sunRise 6s ease-out forwards, sunGlow 4s ease-in-out 6s infinite alternate;
+    filter: blur(1px);
+  }
+  @keyframes sunRise { from { transform: translateY(80px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes sunGlow { from { box-shadow: 0 0 60px rgba(212,175,55,0.3); } to { box-shadow: 0 0 120px rgba(212,175,55,0.6); } }
+  .horizon {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 35%;
+    background: linear-gradient(to top, rgba(14,59,46,0.7) 0%, transparent 100%);
+  }
+  .hills {
+    position: absolute; bottom: 0; left: -5%; right: -5%;
+    height: 45%;
+  }
+  .hill {
+    position: absolute; bottom: 0;
+    border-radius: 50% 50% 0 0;
+    animation: hillSway 8s ease-in-out infinite alternate;
+  }
+  .hill1 { left: -8%; width: 55%; height: 90%; background: rgba(26,92,68,0.55); animation-delay: 0s; }
+  .hill2 { left: 30%; width: 50%; height: 70%; background: rgba(14,59,46,0.65); animation-delay: -2s; }
+  .hill3 { right: -5%; width: 45%; height: 80%; background: rgba(10,50,35,0.6); animation-delay: -4s; }
+  @keyframes hillSway { from { transform: scaleX(1); } to { transform: scaleX(1.02); } }
+
+  /* Floating grass blades */
+  .grass-container {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
+    display: flex; align-items: flex-end; gap: 2px; padding: 0 2%;
+    overflow: hidden;
+  }
+  .grass {
+    width: 3px; border-radius: 3px 3px 0 0;
+    background: linear-gradient(to top, var(--green), #2a9d6a);
+    transform-origin: bottom center;
+    animation: grassWave 3s ease-in-out infinite alternate;
+  }
+
+  .hero-content {
+    position: relative; z-index: 3;
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 5%; padding-top: 120px; padding-bottom: 80px;
+    width: 100%;
+  }
+  .trust-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: rgba(212,175,55,0.12);
+    border: 1px solid rgba(212,175,55,0.35);
+    border-radius: 50px;
+    padding: 0.45rem 1.1rem;
+    font-size: 0.8rem; font-weight: 500;
+    color: var(--gold2);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.8s ease 3s both;
+    backdrop-filter: blur(8px);
+  }
+  .trust-badge .stars { color: var(--gold); font-size: 0.85rem; }
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6.5vw, 6rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 1.4rem;
+    animation: fadeUp 0.9s ease 3.2s both;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    animation: fadeUp 0.9s ease 3.4s both;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.9s ease 3.6s both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--gold);
+    color: var(--green);
+    padding: 0.95rem 2rem;
+    border-radius: 3px;
+    font-weight: 600; font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(.17,.67,.44,1.2);
+    border: none; cursor: pointer;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--gold2), var(--gold));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(212,175,55,0.4); }
+  .btn-primary:hover::before { opacity: 1; }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    color: var(--white);
+    padding: 0.95rem 2rem;
+    border-radius: 3px;
+    font-weight: 500; font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.35);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-3px);
+  }
+  .btn-wa {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: #25D366;
+    color: white;
+    padding: 0.95rem 2rem;
+    border-radius: 3px;
+    font-weight: 600; font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .btn-wa:hover { background: #1ebe57; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(37,211,102,0.35); }
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    animation: fadeUp 1s ease 4s both;
+  }
+  .scroll-hint span { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.1); } }
+
+  /* ─────────── SECTIONS ─────────── */
+  section { position: relative; }
+
+  /* ─────────── STATS ─────────── */
+  #stats {
+    background: var(--green);
+    padding: 6rem 5%;
+    overflow: hidden;
+  }
+  .stats-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 3rem;
+    align-items: center;
+  }
+  .stat-item {
+    text-align: center;
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .stat-item.visible { opacity: 1; transform: none; }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .stat-divider {
+    width: 1px; height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--border), transparent);
+    margin: 0 auto;
+  }
+  .stats-label-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 0.3rem;
+  }
+
+  /* ─────────── ABOUT ─────────── */
+  #about {
+    padding: 9rem 5%;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .about-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 7rem; align-items: center;
+  }
+  .about-visual {
+    position: relative;
+    opacity: 0; transform: translateX(-50px);
+    transition: all 0.9s cubic-bezier(.17,.67,.44,1.2);
+  }
+  .about-visual.visible { opacity: 1; transform: none; }
+  .about-image-frame {
+    width: 100%; padding-top: 120%;
+    background: linear-gradient(135deg, var(--green) 0%, var(--green2) 60%, var(--green3) 100%);
+    border-radius: 4px;
+    position: relative; overflow: hidden;
+  }
+  .about-image-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(212,175,55,0.04) 20px, rgba(212,175,55,0.04) 21px),
+      radial-gradient(ellipse at 40% 60%, rgba(42,122,92,0.6) 0%, transparent 60%);
+  }
+  .about-image-icon {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8rem;
+    animation: iconFloat 4s ease-in-out infinite alternate;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  }
+  @keyframes iconFloat { from { transform: translate(-50%, -45%); } to { transform: translate(-50%, -55%); } }
+  .about-accent-box {
+    position: absolute; bottom: -30px; right: -30px;
+    width: 140px; height: 140px;
+    background: var(--gold);
+    border-radius: 4px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 1rem;
+  }
+  .about-accent-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1;
+  }
+  .about-accent-txt {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--green);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 0.2rem;
+  }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold3);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--gold3);
+  }
+  .section-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .section-h2 em { font-style: italic; color: var(--gold3); }
+  .section-h2-light {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .section-h2-light em { font-style: italic; color: var(--gold); }
+  .body-text {
+    font-size: 1rem; line-height: 1.85;
+    color: #4B5563;
+    margin-bottom: 1.5rem;
+  }
+  .about-pills {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-top: 2rem;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(14,59,46,0.07);
+    border: 1px solid rgba(14,59,46,0.15);
+    padding: 0.45rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--green);
+  }
+  .about-text {
+    opacity: 0; transform: translateX(50px);
+    transition: all 0.9s cubic-bezier(.17,.67,.44,1.2) 0.2s;
+  }
+  .about-text.visible { opacity: 1; transform: none; }
+
+  /* ─────────── SERVICES ─────────── */
+  #services {
+    padding: 9rem 5%;
+    background: var(--green);
+    overflow: hidden;
+  }
+  .services-header {
+    max-width: 1200px; margin: 0 auto 5rem;
+    text-align: center;
+  }
+  .services-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 6px;
+    padding: 2.5rem 2rem;
+    position: relative; overflow: hidden;
+    transition: all 0.4s cubic-bezier(.17,.67,.44,1.2);
+    opacity: 0; transform: translateY(40px);
+    cursor: pointer;
+  }
+  .service-card.visible { opacity: 1; transform: none; }
+  .service-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(212,175,55,0.07) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(212,175,55,0.45);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px rgba(212,175,55,0.1);
+  }
+  .service-card:hover::before { opacity: 1; }
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.4rem;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .service-card:hover .service-icon { transform: scale(1.15) rotate(-5deg); }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.7rem;
+  }
+  .service-desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.6);
+  }
+  .service-tag {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold3);
+    font-weight: 500;
+  }
+
+  /* ─────────── WHY US ─────────── */
+  #why {
+    padding: 9rem 5%;
+    background: var(--cream);
+  }
+  .why-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8rem; align-items: center;
+  }
+  .why-left {
+    opacity: 0; transform: translateX(-50px);
+    transition: all 0.9s cubic-bezier(.17,.67,.44,1.2);
+  }
+  .why-left.visible { opacity: 1; transform: none; }
+  .why-right {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    opacity: 0; transform: translateX(50px);
+    transition: all 0.9s cubic-bezier(.17,.67,.44,1.2) 0.15s;
+  }
+  .why-right.visible { opacity: 1; transform: none; }
+  .why-card {
+    background: var(--white);
+    border: 1px solid rgba(14,59,46,0.1);
+    border-radius: 6px;
+    padding: 1.8rem 1.4rem;
+    transition: all 0.35s;
+    position: relative; overflow: hidden;
+  }
+  .why-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold3), var(--gold));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .why-card:hover {
+    box-shadow: 0 12px 40px rgba(14,59,46,0.12);
+    transform: translateY(-4px);
+  }
+  .why-card:hover::after { transform: scaleX(1); }
+  .why-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .why-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 600;
+    color: var(--green); margin-bottom: 0.4rem;
+  }
+  .why-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.65; }
+  .why-large-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(6rem, 12vw, 10rem);
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(14,59,46,0.15);
+    line-height: 1;
+    margin-bottom: -1rem;
+    display: block;
+  }
+
+  /* ─────────── TESTIMONIALS ─────────── */
+  #testimonials {
+    padding: 9rem 5%;
+    background: var(--green);
+    overflow: hidden;
+  }
+  .testimonials-inner {
+    max-width: 900px; margin: 0 auto;
+  }
+  .testimonials-header { text-align: center; margin-bottom: 4rem; }
+  .testimonials-slider {
+    position: relative;
+    min-height: 280px;
+  }
+  .testimonial-card {
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212,175,55,0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 8px;
+    padding: 3rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+  }
+  .testimonial-card.active {
+    opacity: 1; transform: none;
+    pointer-events: all;
+  }
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+  }
+  .testimonial-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+  .testimonial-author {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 0.5rem;
+  }
+  .big-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem;
+    color: rgba(212,175,55,0.12);
+    line-height: 0.6;
+    margin-bottom: -1rem;
+  }
+  .slider-dots {
+    display: flex; gap: 0.7rem; justify-content: center;
+    margin-top: 2rem;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(212,175,55,0.3);
+    cursor: pointer; transition: all 0.3s;
+    border: none;
+  }
+  .dot.active {
+    background: var(--gold);
+    transform: scale(1.3);
+  }
+
+  /* ─────────── GALLERY ─────────── */
+  #gallery {
+    padding: 9rem 5%;
+    background: var(--cream);
+  }
+  .gallery-header { text-align: center; max-width: 1200px; margin: 0 auto 4rem; }
+  .masonry-grid {
+    max-width: 1200px; margin: 0 auto;
+    columns: 3; column-gap: 1.2rem;
+  }
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.2rem;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    opacity: 0; transform: scale(0.95);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .masonry-item.visible { opacity: 1; transform: none; }
+  .gallery-tile {
+    width: 100%;
+    background: linear-gradient(135deg, var(--green) 0%, var(--green2) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+    transition: transform 0.5s cubic-bezier(.17,.67,.44,1.2);
+    position: relative; overflow: hidden;
+  }
+  .gallery-tile::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg,
+      rgba(42,122,92,0.3) 0%, rgba(14,59,46,0.1) 50%, rgba(10,50,35,0.4) 100%);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .masonry-item:hover .gallery-tile { transform: scale(1.06); }
+  .masonry-item:hover .gallery-tile::before { opacity: 1; }
+  .gallery-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(14,59,46,0.95), transparent);
+    padding: 2rem 1.2rem 1.2rem;
+    transform: translateY(100%);
+    transition: transform 0.4s;
+  }
+  .masonry-item:hover .gallery-caption { transform: none; }
+  .gallery-caption span {
+    color: var(--gold2);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .t1 { padding-top: 75%; }
+  .t2 { padding-top: 55%; }
+  .t3 { padding-top: 90%; }
+  .t4 { padding-top: 65%; }
+  .t5 { padding-top: 80%; }
+  .t6 { padding-top: 60%; }
+
+  /* ─────────── LOCATION ─────────── */
+  #location {
+    padding: 9rem 5%;
+    background: var(--green);
+  }
+  .location-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .location-info {
+    opacity: 0; transform: translateX(-50px);
+    transition: all 0.9s ease;
+  }
+  .location-info.visible { opacity: 1; transform: none; }
+  .location-address {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .address-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.15rem; }
+  .address-details { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.7; }
+  .address-details strong { color: var(--white); font-weight: 500; }
+  .location-hours {
+    display: flex; align-items: center; gap: 0.8rem;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem; margin-bottom: 2rem;
+  }
+  .hours-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #4ade80;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.4); } 50% { box-shadow: 0 0 0 6px rgba(74,222,128,0); } }
+  .map-frame {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    opacity: 0; transform: translateX(50px);
+    transition: all 0.9s ease 0.2s;
+  }
+  .map-frame.visible { opacity: 1; transform: none; }
+  .map-frame iframe {
+    width: 100%; height: 380px;
+    border: none; display: block;
+    filter: sepia(30%) saturate(1.2) hue-rotate(120deg) brightness(0.8);
+  }
+
+  /* ─────────── CTA BANNER ─────────── */
+  #cta {
+    padding: 8rem 5%;
+    background: var(--cream);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(14,59,46,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(212,175,55,0.05) 0%, transparent 60%);
+  }
+  .cta-inner {
+    max-width: 700px; margin: 0 auto;
+    position: relative; z-index: 1;
+    opacity: 0; transform: translateY(40px);
+    transition: all 0.9s ease;
+  }
+  .cta-inner.visible { opacity: 1; transform: none; }
+  .cta-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .cta-h2 em { font-style: italic; color: var(--gold3); }
+  .cta-sub {
+    color: var(--gray);
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-dark {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--green);
+    color: var(--white);
+    padding: 1rem 2.2rem;
+    border-radius: 3px;
+    font-weight: 600; font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .btn-dark:hover { background: var(--green2); transform: translateY(-3px); box-shadow: 0 12px 35px rgba(14,59,46,0.3); }
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    color: var(--green);
+    border: 2px solid var(--gold3);
+    padding: 1rem 2.2rem;
+    border-radius: 3px;
+    font-weight: 600; font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .btn-gold:hover { background: var(--gold); border-color: var(--gold); transform: translateY(-3px); }
+
+  /* ─────────── FOOTER ─────────── */
+  footer {
+    background: #070f0c;
+    padding: 5rem 5% 2rem;
+    border-top: 1px solid rgba(212,175,55,0.12);
+  }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 4rem; margin-bottom: 4rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 700; color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .footer-logo span { color: var(--white); font-style: italic; }
+  .footer-tagline {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    max-width: 280px;
+  }
+  .footer-socials { display: flex; gap: 0.8rem; }
+  .social-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .social-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--green); transform: translateY(-3px); }
+  .footer-col-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold3);
+    font-weight: 600;
+    margin-bottom: 1.4rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .footer-col ul li a {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.25s;
+  }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-contact-item {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+  .contact-icon { color: var(--gold); flex-shrink: 0; margin-top: 0.1rem; }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.28);
+  }
+  .footer-rating {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+  }
+  .footer-rating .stars { color: var(--gold); }
+
+  /* ─────────── WA FLOAT ─────────── */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 900;
+    width: 58px; height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.45);
+    animation: waBounce 3s ease-in-out infinite;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .wa-float:hover {
+    transform: scale(1.12);
+    box-shadow: 0 12px 40px rgba(37,211,102,0.6);
+    animation: none;
+  }
+  @keyframes waBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .wa-float::before {
+    content: '';
+    position: absolute; inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(37,211,102,0.3);
+    animation: waRipple 2s ease infinite;
+  }
+  @keyframes waRipple { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
+
+  /* ─────────── PARTICLES CANVAS ─────────── */
+  #heroParticles {
+    position: absolute; inset: 0; z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ─────────── SECTION HEADER CENTERED ─────────── */
+  .center-header { text-align: center; max-width: 600px; margin: 0 auto; }
+
+  /* ─────────── RESPONSIVE ─────────── */
+  @media (max-width: 1024px) {
+    .about-inner { gap: 4rem; }
+    .why-inner { gap: 4rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .about-image-frame { padding-top: 65%; }
+    .about-accent-box { right: 0; bottom: -20px; }
+    .why-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .why-right { grid-template-columns: 1fr 1fr; }
+    .location-inner { grid-template-columns: 1fr; }
+    .masonry-grid { columns: 2; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .stats-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .stat-divider { display: none; }
+    .hero-btns { flex-direction: column; max-width: 280px; }
+  }
+  @media (max-width: 480px) {
+    .masonry-grid { columns: 1; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .why-right { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div class="loader-logo">🐷 Oluka Farms</div>
+  <div class="loader-sub">Abakaliki · Ebonyi State · Nigeria</div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/2348000000000?text=Hello%20Oluka%20Farms%2C%20I%27m%20interested%20in%20your%20pigs." target="_blank" title="Chat on WhatsApp">💬</a>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo">Oluka <span>Farms</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#why">Why Us</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#location">Location</a>
+    <a href="https://wa.me/2348000000000" target="_blank" class="nav-cta">Order Now</a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-close" id="mobileClose">✕</div>
+  <a href="#about" class="mob-link">About</a>
+  <a href="#services" class="mob-link">Services</a>
+  <a href="#why" class="mob-link">Why Us</a>
+  <a href="#testimonials" class="mob-link">Reviews</a>
+  <a href="#gallery" class="mob-link">Gallery</a>
+  <a href="#location" class="mob-link">Location</a>
+  <a href="https://wa.me/2348000000000" class="mob-link" target="_blank" style="color:var(--gold)">Order Now →</a>
+</div>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="hero">
+  <canvas id="heroParticles"></canvas>
+  <div class="hero-bg"></div>
+  <div class="farm-scene">
+    <div class="sun"></div>
+    <div class="hills">
+      <div class="hill hill1"></div>
+      <div class="hill hill2"></div>
+      <div class="hill hill3"></div>
+    </div>
+    <div class="horizon"></div>
+    <div class="grass-container" id="grassContainer"></div>
+  </div>
+  <div class="hero-content">
+    <div class="trust-badge">
+      <span class="stars">★★★★★</span>
+      Rated 4.7/5 by Our Customers
+    </div>
+    <h1 class="hero-headline">
+      Premium Pig Farming<br>
+      <em>You Can Trust</em>
+    </h1>
+    <p class="hero-sub">
+      Oluka Farms delivers healthy pigs, piglets, quality breeding stock, and dependable agricultural services across Ebonyi State and beyond.
+    </p>
+    <div class="hero-btns">
+      <a href="https://wa.me/2348000000000?text=I'd%20like%20to%20book%20a%20supply%20from%20Oluka%20Farms" target="_blank" class="btn-primary">
+        <span>🐷 Book Supply</span>
+      </a>
+      <a href="https://wa.me/2348000000000" target="_blank" class="btn-wa">
+        <span>💬 Chat on WhatsApp</span>
+      </a>
+      <a href="#location" class="btn-outline">
+        <span>📍 Visit Farm</span>
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ STATS ═══════════════ -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number" data-count="4.7" data-decimal="1">0</div>
+      <div class="stats-label-main">Customer Rating</div>
+      <div class="stat-label">Out of 5.0 Stars</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item" style="transition-delay:0.15s">
+      <div class="stat-number" data-count="100" data-suffix="%">0</div>
+      <div class="stats-label-main">Quality Assured</div>
+      <div class="stat-label">Healthy Livestock</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item" style="transition-delay:0.3s">
+      <div class="stat-number" data-count="7" data-suffix=" Days">0</div>
+      <div class="stats-label-main">Weekly Availability</div>
+      <div class="stat-label">Farm Open All Week</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item" style="transition-delay:0.45s">
+      <div class="stat-number" data-count="24" data-suffix="hrs">0</div>
+      <div class="stats-label-main">WhatsApp Response</div>
+      <div class="stat-label">Fast & Reliable Service</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-image-frame">
+        <div class="about-image-icon">🐖</div>
+      </div>
+      <div class="about-accent-box">
+        <span class="about-accent-num">4.7</span>
+        <span class="about-accent-txt">Customer Rating</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">Our Story</div>
+      <h2 class="section-h2">Abakaliki's Most <em>Trusted</em> Pig Farm</h2>
+      <p class="body-text">
+        Oluka Farms is a locally rooted, commercially driven pig farm operating from 13 Akam Street, Ntezi Abba, Abakaliki, Ebonyi State. We have built a solid reputation for delivering healthy, well-fed pigs to families, restaurants, and business buyers across the region.
+      </p>
+      <p class="body-text">
+        Our farm maintains strict hygiene standards, quality feed protocols, and responsible breeding practices — all designed to give you livestock that is strong, healthy, and market-ready. Whether you need a single pig for a ceremony or bulk supply for your business, Oluka Farms is the name Abakaliki trusts.
+      </p>
+      <div class="about-pills">
+        <span class="pill">✅ Healthy Breeding</span>
+        <span class="pill">🧼 Farm Hygiene</span>
+        <span class="pill">💰 Honest Pricing</span>
+        <span class="pill">🚚 Reliable Supply</span>
+        <span class="pill">😊 Happy Customers</span>
+        <span class="pill">📍 Local Expertise</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<section id="services">
+  <div class="services-header">
+    <div class="section-tag" style="color:var(--gold3)">What We Offer</div>
+    <h2 class="section-h2-light">Our <em>Premium Services</em></h2>
+    <p style="color:rgba(255,255,255,0.55);font-size:1rem;max-width:500px;margin:0 auto;line-height:1.7;">
+      From single-pig sales to large bulk orders — we provide everything your pig farming and purchasing needs require.
+    </p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🐷</span>
+      <div class="service-tag">Available Now</div>
+      <div class="service-name">Pig Sales</div>
+      <p class="service-desc">Healthy, market-ready pigs of various sizes and weights available for immediate purchase. Ideal for ceremonies, businesses, and personal use.</p>
+    </div>
+    <div class="service-card" style="transition-delay:0.1s">
+      <span class="service-icon">🐽</span>
+      <div class="service-tag">Fresh Stock</div>
+      <div class="service-name">Piglets Supply</div>
+      <p class="service-desc">Healthy, well-nourished piglets from quality breeding stock — perfect for starting or expanding your own pig farm operation.</p>
+    </div>
+    <div class="service-card" style="transition-delay:0.2s">
+      <span class="service-icon">🧬</span>
+      <div class="service-tag">Premium</div>
+      <div class="service-name">Breeding Stock</div>
+      <p class="service-desc">Select boars and sows from proven bloodlines, chosen for strong genetics, good temperament, and exceptional reproductive performance.</p>
+    </div>
+    <div class="service-card" style="transition-delay:0.3s">
+      <span class="service-icon">📦</span>
+      <div class="service-tag">Wholesale</div>
+      <div class="service-name">Bulk Supply</div>
+      <p class="service-desc">Large-volume orders available for restaurants, event caterers, abattoirs, and agribusiness operators across Ebonyi State and beyond.</p>
+    </div>
+    <div class="service-card" style="transition-delay:0.4s">
+      <span class="service-icon">🤝</span>
+      <div class="service-tag">Expert Advice</div>
+      <div class="service-name">Farm Consultation</div>
+      <p class="service-desc">Get practical guidance on pig rearing, feed management, health protocols, and farm setup from our experienced team.</p>
+    </div>
+    <div class="service-card" style="transition-delay:0.5s">
+      <span class="service-icon">🚚</span>
+      <div class="service-tag">Logistics</div>
+      <div class="service-name">Delivery Arrangement</div>
+      <p class="service-desc">We coordinate safe, humane delivery of your purchased animals to your location within Abakaliki and surrounding areas on request.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHY US ═══════════════ -->
+<section id="why">
+  <div class="why-inner">
+    <div class="why-left">
+      <span class="why-large-number">06</span>
+      <div class="section-tag">Why Choose Oluka Farms</div>
+      <h2 class="section-h2">Reasons to <em>Trust Us</em> With Your Purchase</h2>
+      <p class="body-text">
+        We don't just sell pigs. We build relationships. Every animal that leaves Oluka Farms carries our commitment to quality, health, and customer satisfaction behind it.
+      </p>
+      <a href="https://wa.me/2348000000000" target="_blank" class="btn-primary" style="margin-top:1rem;display:inline-flex">
+        <span>Talk to Us Today →</span>
+      </a>
+    </div>
+    <div class="why-right">
+      <div class="why-card">
+        <div class="why-icon">💪</div>
+        <div class="why-title">Healthy Animals</div>
+        <p class="why-desc">Every pig is raised with proper nutrition, veterinary care, and clean living conditions.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏆</div>
+        <div class="why-title">Trusted Reputation</div>
+        <p class="why-desc">Rated 4.7/5 by real customers. Our word is our bond in the Abakaliki market.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌾</div>
+        <div class="why-title">Quality Feed Standards</div>
+        <p class="why-desc">We use balanced, nutritious feed to raise pigs that are healthy, strong, and market-ready.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Fast Response</div>
+        <p class="why-desc">Reach us on WhatsApp and get a reply within hours. No long wait, no runaround.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <div class="why-title">Affordable Rates</div>
+        <p class="why-desc">Premium quality doesn't have to mean premium price. Our rates are honest and competitive.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📍</div>
+        <div class="why-title">Local Expertise</div>
+        <p class="why-desc">Born and bred in Ebonyi. We understand the local market, seasons, and needs deeply.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+<section id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <div class="section-tag" style="color:var(--gold3)">What People Say</div>
+      <h2 class="section-h2-light">Customer <em>Reviews</em></h2>
+    </div>
+    <div class="testimonials-slider">
+      <div class="testimonial-card active">
+        <div class="big-quote">"</div>
+        <p class="testimonial-quote">Reliable pig farm with quality service. Got exactly what I needed for my event — healthy pigs, good price, prompt delivery. Will always come back to Oluka Farms.</p>
+        <div>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-author">— Verified Customer, Abakaliki</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="big-quote">"</div>
+        <p class="testimonial-quote">Healthy livestock and honest dealings. I've purchased from them twice now. The pigs are always in excellent condition and the people are straightforward to deal with.</p>
+        <div>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-author">— Repeat Buyer, Ebonyi State</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="big-quote">"</div>
+        <p class="testimonial-quote">Trusted local farm in Abakaliki. Best pig farm I've found in this area. They gave me piglets that are growing well. The consultation advice they provided was also very helpful.</p>
+        <div>
+          <div class="testimonial-stars">★★★★☆</div>
+          <div class="testimonial-author">— New Farmer, Ntezi Abba Area</div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="big-quote">"</div>
+        <p class="testimonial-quote">I ordered bulk supply for our restaurant and Oluka Farms came through professionally. Clean animals, fair pricing, and they even arranged the transport. Highly recommended.</p>
+        <div>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-author">— Business Owner, Abakaliki</div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-dots">
+      <button class="dot active" data-index="0"></button>
+      <button class="dot" data-index="1"></button>
+      <button class="dot" data-index="2"></button>
+      <button class="dot" data-index="3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ GALLERY ═══════════════ -->
+<section id="gallery">
+  <div class="gallery-header">
+    <div class="section-tag">Farm Gallery</div>
+    <h2 class="section-h2">A Glimpse Into <em>Oluka Farms</em></h2>
+  </div>
+  <div class="masonry-grid" id="masonryGrid">
+    <div class="masonry-item">
+      <div class="gallery-tile t1" style="background:linear-gradient(135deg,#0E3B2E,#1A5C44)">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem">
+          <span style="font-size:4rem">🐖</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(212,175,55,0.8);letter-spacing:0.1em">Healthy Pigs</span>
+        </div>
+      </div>
+      <div class="gallery-caption"><span>Premium Livestock</span></div>
+    </div>
+    <div class="masonry-item" style="transition-delay:0.1s">
+      <div class="gallery-tile t2" style="background:linear-gradient(135deg,#1A5C44,#2A7A5C)">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem">
+          <span style="font-size:3.5rem">🌾</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(212,175,55,0.8);letter-spacing:0.1em">Farm Environment</span>
+        </div>
+      </div>
+      <div class="gallery-caption"><span>Clean Farm Grounds</span></div>
+    </div>
+    <div class="masonry-item" style="transition-delay:0.2s">
+      <div class="gallery-tile t3" style="background:linear-gradient(135deg,#0A3228,#0E3B2E)">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem">
+          <span style="font-size:4rem">🐽</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(212,175,55,0.8);letter-spacing:0.1em">Piglets</span>
+        </div>
+      </div>
+      <div class="gallery-caption"><span>Fresh Piglets Available</span></div>
+    </div>
+    <div class="masonry-item" style="transition-delay:0.15s">
+      <div class="gallery-tile t4" style="background:linear-gradient(135deg,#2A7A5C,#1A5C44)">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem">
+          <span style="font-size:3.5rem">🏡</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(212,175,55,0.8);letter-spacing:0.1em">Pig Pens</span>
+        </div>
+      </div>
+      <div class="gallery-caption"><span>Modern Housing Units</span></div>
+    </div>
+    <div class="masonry-item" style="transition-delay:0.25s">
+      <div class="gallery-tile t2" style="background:linear-gradient(135deg,#D4AF37,#A88820);min-height:160px">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem">
+          <span style="font-size:3rem">👨‍🌾</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(14,59,46,0.9);letter-spacing:0.1em">Our Team</span>
+        </div>
+      </div>
+      <div class="gallery-caption"><span>Dedicated Farm Staff</span></div>
+    </div>
+    <div class="masonry-item" style="transition-delay:0.35s">
+      <div class="gallery-tile t5" style="background:linear-gradient(135deg,#0E3B2E,#2A7A5C)">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem">
+          <span style="font-size:4rem">🚚</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(212,175,55,0.8);letter-spacing:0.1em">Delivery</span>
+        </div>
+      </div>
+      <div class="gallery-caption"><span>Safe & Prompt Delivery</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ LOCATION ═══════════════ -->
+<section id="location">
+  <div class="location-inner">
+    <div class="location-info">
+      <div class="section-tag" style="color:var(--gold3)">Find Us</div>
+      <h2 class="section-h2-light">Visit <em>Oluka Farms</em></h2>
+      <div class="location-address">
+        <span class="address-icon">📍</span>
+        <div class="address-details">
+          <strong>13 Akam Street, Ntezi Abba,</strong><br>
+          Abakaliki, Ebonyi State, Nigeria.
+        </div>
+      </div>
+      <div class="location-hours">
+        <div class="hours-dot"></div>
+        <span>Open: <strong style="color:rgba(255,255,255,0.85)">&nbsp;9:00 AM – 5:00 PM,&nbsp;</strong> Monday – Saturday</span>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="https://maps.google.com/?q=13+Akam+Street+Ntezi+Abba+Abakaliki+Ebonyi+State+Nigeria" target="_blank" class="btn-primary">
+          <span>🗺️ Get Directions</span>
+        </a>
+        <a href="https://wa.me/2348000000000" target="_blank" class="btn-wa">
+          <span>💬 WhatsApp Now</span>
+        </a>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.!2d8.09!3d6.33!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTknNDMuMiJOIDjCsDA1JzI0LjAiRQ!5e0!3m2!1sen!2sng!4v1"
+        allowfullscreen="" loading="lazy"
+        title="Oluka Farms Location – Abakaliki, Ebonyi State"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ═══════════════ -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="section-tag" style="color:var(--gold3)">Ready to Order?</div>
+    <h2 class="cta-h2">Ready to Buy <em>Healthy Pigs?</em></h2>
+    <p class="cta-sub">
+      Contact Oluka Farms today and get quality livestock at honest prices. Delivery available across Abakaliki and Ebonyi State.
+    </p>
+    <div class="cta-btns">
+      <a href="https://wa.me/2348000000000?text=I%20want%20to%20buy%20pigs%20from%20Oluka%20Farms" target="_blank" class="btn-dark">
+        <span>📞 Contact Oluka Farms</span>
+      </a>
+      <a href="https://wa.me/2348000000000?text=Please%20send%20me%20your%20current%20pricing%20for%20pigs" target="_blank" class="btn-gold">
+        <span>💰 Request Pricing</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-logo">Oluka <span>Farms</span></div>
+      <p class="footer-tagline">Premium pig farming in Abakaliki, Ebonyi State. Healthy livestock, honest dealings, dependable service — every time.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" title="Facebook">📘</a>
+        <a href="#" class="social-btn" title="Instagram">📸</a>
+        <a href="https://wa.me/2348000000000" class="social-btn" title="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Quick Links</div>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul>
+        <li><a href="#">Pig Sales</a></li>
+        <li><a href="#">Piglets Supply</a></li>
+        <li><a href="#">Breeding Stock</a></li>
+        <li><a href="#">Bulk Supply</a></li>
+        <li><a href="#">Farm Consultation</a></li>
+        <li><a href="#">Delivery Arrangement</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact-item">
+        <span class="contact-icon">📍</span>
+        <span>13 Akam Street, Ntezi Abba, Abakaliki, Ebonyi State, Nigeria</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="contact-icon">🕘</span>
+        <span>Mon – Sat: 9:00 AM – 5:00 PM</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="contact-icon">💬</span>
+        <a href="https://wa.me/2348000000000" style="color:rgba(255,255,255,0.5);transition:color 0.25s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">WhatsApp Us Now →</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Oluka Farms. All rights reserved. | Abakaliki, Ebonyi State, Nigeria</div>
+    <div class="footer-rating">
+      <span class="stars">★★★★★</span>
+      <span>Rated 4.7 / 5 by customers</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════
+   OLUKA FARMS – PREMIUM JS ENGINE
+═══════════════════════════════════════ */
+
+// ─── LOADER ───
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 2600);
+});
+
+// ─── CURSOR ───
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx - 6 + 'px';
+  cursor.style.top  = my - 6 + 'px';
+});
+function animRing() {
+  rx += (mx - rx - 19) * 0.12;
+  ry += (my - ry - 19) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top  = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.service-card,.why-card,.masonry-item,.dot').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.width = '58px'; ring.style.height = '58px';
+    cursor.style.opacity = '0';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width = '38px'; ring.style.height = '38px';
+    cursor.style.opacity = '1';
+  });
+});
+
+// ─── NAV SCROLL ───
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ─── MOBILE MENU ───
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+hamburger.addEventListener('click', () => { mobileMenu.style.display = 'flex'; setTimeout(() => mobileMenu.classList.add('open'), 10); });
+mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); setTimeout(() => mobileMenu.style.display = 'none', 400); });
+document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); setTimeout(() => mobileMenu.style.display = 'none', 400); }));
+
+// ─── HERO PARTICLES CANVAS ───
+const canvas = document.getElementById('heroParticles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resizeCanvas() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.r = Math.random() * 2.5 + 0.5;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = -Math.random() * 0.6 - 0.1;
+    this.alpha = Math.random() * 0.5 + 0.1;
+    this.color = Math.random() > 0.5 ? '212,175,55' : '255,255,255';
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    this.alpha -= 0.0008;
+    if (this.y < -10 || this.alpha <= 0) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${this.color},${this.alpha})`;
+    ctx.fill();
+  }
+}
+for (let i = 0; i < 120; i++) particles.push(new Particle());
+function animParticles() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animParticles);
+}
+animParticles();
+
+// ─── GRASS ───
+const grassContainer = document.getElementById('grassContainer');
+for (let i = 0; i < 60; i++) {
+  const g = document.createElement('div');
+  g.className = 'grass';
+  const h = 30 + Math.random() * 60;
+  const delay = Math.random() * 3;
+  g.style.cssText = `height:${h}px;animation-delay:${delay}s;animation-duration:${2+Math.random()*2}s;opacity:${0.4+Math.random()*0.6}`;
+  grassContainer.appendChild(g);
+}
+
+// ─── INTERSECTION OBSERVER (scroll reveals) ───
+const revealEls = document.querySelectorAll(
+  '.stat-item,.about-visual,.about-text,.service-card,.why-left,.why-right,.location-info,.map-frame,.cta-inner,.masonry-item'
+);
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+revealEls.forEach(el => io.observe(el));
+
+// ─── COUNTER ANIMATION ───
+function animateCounter(el, target, decimal, suffix) {
+  const start = performance.now();
+  const duration = 2000;
+  const step = (now) => {
+    const t = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const val = target * ease;
+    el.textContent = (decimal ? val.toFixed(decimal) : Math.floor(val)) + (suffix || '');
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.animated) {
+      e.target.dataset.animated = '1';
+      const nums = e.target.querySelectorAll('.stat-number');
+      nums.forEach(n => {
+        animateCounter(n, parseFloat(n.dataset.count), parseInt(n.dataset.decimal) || 0, n.dataset.suffix || '');
+      });
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('#stats').forEach(el => counterObs.observe(el));
+
+// ─── TESTIMONIAL SLIDER ───
+const cards = document.querySelectorAll('.testimonial-card');
+const dots  = document.querySelectorAll('.dot');
+let current = 0, timer;
+function goTo(idx) {
+  cards[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = idx;
+  cards[current].classList.add('active');
+  dots[current].classList.add('active');
+}
+dots.forEach(d => d.addEventListener('click', () => { clearInterval(timer); goTo(+d.dataset.index); startTimer(); }));
+function startTimer() { timer = setInterval(() => goTo((current + 1) % cards.length), 5000); }
+startTimer();
+
+// ─── PARALLAX ON HERO ───
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const farmScene = document.querySelector('.farm-scene');
+  if (farmScene) farmScene.style.transform = `translateY(${y * 0.3}px)`;
+});
+
+// ─── SMOOTH REVEAL FOR GALLERY TIMING ───
+const galleryItems = document.querySelectorAll('.masonry-item');
+galleryItems.forEach((item, i) => {
+  item.style.transitionDelay = (i * 0.1) + 's';
+});
+
+// ─── SERVICE CARDS STAGGER ───
+const serviceCards = document.querySelectorAll('.service-card');
+serviceCards.forEach((c, i) => { c.style.transitionDelay = (i * 0.08) + 's'; });
+
+console.log('%c🐷 Oluka Farms — Premium Pig Farm | Abakaliki, Ebonyi State', 'color:#D4AF37;font-family:serif;font-size:14px;font-weight:bold;background:#0E3B2E;padding:8px 16px;border-radius:4px;');
+</script>
+</body>
+</html>
